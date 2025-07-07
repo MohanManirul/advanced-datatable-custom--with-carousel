@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { users } from "../ApiRequest/ApiRequest";
+import { usersData } from "../ApiRequest/ApiRequest";
 
 const useUsers = () => {
       const [data , setData] = useState([]);
@@ -10,7 +10,7 @@ const useUsers = () => {
       
             try{
 
-                const res = await users(); // api call               
+                const res = await usersData(); // api call               
                 setData(res)
 
             }catch(err){
