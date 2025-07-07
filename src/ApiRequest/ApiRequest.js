@@ -31,4 +31,17 @@ export async function allSliders() {
   }
 }
 
+// faqs 
+
+export async function allFQAs() {
+  let res = await axios.get(UkilSiteBaseUrl + "/course-categories/CourseFaqs");
+  if (res.status === 200) {   
+    console.log(res.data);
+    return res.data;
+    
+  } else {
+    return [];
+  }
+}
+
 

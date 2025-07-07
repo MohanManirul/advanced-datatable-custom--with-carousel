@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { allFQAs } from '../ApiRequest/ApiRequest';
 
 const Accordion = () => {
+
+ const [items , setItems] = useState([])
 
     const [openIndex , setOpenIndex] = useState(null)
 
@@ -8,22 +11,16 @@ const Accordion = () => {
         setOpenIndex(openIndex === index? null:index)
     }
 
-      const items = [
-                {
-                    title: 'What is React?',
-                    content: 'React is an open-source JavaScript library developed by Facebook for building user interfaces',
-                },
 
-                {
-                    title: 'What is JSX?',
-                    content: 'JSX stands for JavaScript XML. It allows you to write HTML elements in JavaScript and place them in the DOM without using createElement() or appendChild()',
-                },
+  useEffect(() => {
+    // iif = immedeately invocated function
+    (async () => {
+      let res = await allFQAs();
 
-                {
-                    title: 'What are props in React?',
-                    content: 'Props (short for properties) are used to pass data from parent to child components. Props are read-only and cannot be modified by the child component.',
-                },
-            ];
+      setItems(res.data);
+    })();
+  }, []);
+
 
 
     return (
@@ -38,13 +35,13 @@ const Accordion = () => {
                                     onClick={()=>Toggle(index)}
                                     className='w-full text-left flex justify-between items-center p-4 focus:outline-none'>
                                     
-                                        <span className='text-lg font-medium'>{item.title}</span>
+                                        <span className='text-lg font-medium'>{item.question}</span>
                                     {openIndex === index ? '-' : '+'} 
                                     </button>
 
                                     { openIndex === index &&(
                                         <div className='p-4 bg-gray-50'>
-                                        <p>{item.content}</p>
+                                        <p>{item.answer}</p>
                                     </div>
                                     )
 
