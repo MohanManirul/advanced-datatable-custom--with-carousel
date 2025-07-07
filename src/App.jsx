@@ -12,6 +12,7 @@ import Dashboard from "./pages/users/Dashboard";
 import AdvocateDashboardLayout from "./Layouts/AdvocateDashboardLayout";
 import AdvocateDashboard from "./pages/advocate/AdvocateDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import MyAdvocates from "./pages/users/MyAdvocates";
 
 
 function App() {
@@ -38,7 +39,20 @@ function App() {
              
               
               } />
+
+            <Route path="/user/dashboard/my-advocates" element={
+            
+              <ProtectedRoute>
+
+                <MyAdvocates />
+                
+              </ProtectedRoute>
+             
+              
+              } />
           </Route>
+
+
 
           <Route path="/" element={<AdvocateDashboardLayout />}>
             <Route path="/advocate/dashboard" element={<AdvocateDashboard />} />
