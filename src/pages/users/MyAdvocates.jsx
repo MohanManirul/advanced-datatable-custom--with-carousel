@@ -1,20 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
+import useUsers from "../../hooks/useUsers";
 
-const data = Array.from({ length: 50 }, (_, i) => ({
-  name: `User ${i + 1}`,
-  email: `user${i + 1}@example.com`,
-  phone: `017000000${String(i + 1).padStart(2, "0")}`
-}));
 
 
 const MyAdvocates = () => {
+
+  const {data} = useUsers() // this is hook
+
   const [searchTerm, setSearchTerm] = useState(""); 
   const [pageSise , setPageSize] = useState(10)
   const [currentPage , setCurrentPage] = useState(1)
   const [sortConfig , setSortConfig] = useState(null)
 
-
-
+ 
   const filteredData = useMemo(() => {
     const result = data.filter((item) =>
       Object.values(item).some((val) =>
@@ -104,7 +102,7 @@ const handleSort = (key) =>{
           <thead className="bg-gray-100">
             <tr>
 
-            {["name","email","phone"].map((key)=>(
+            {["name","email","phone",'address'].map((key)=>(
                <th
                 key={key}
                 onClick={()=>handleSort(key)}
@@ -136,6 +134,7 @@ const handleSort = (key) =>{
                             <td className="px-4 py-2 whitespace-nowrap">{row.name}</td>
                             <td className="px-4 py-2 whitespace-nowrap">{row.email}</td>
                             <td className="px-4 py-2 whitespace-nowrap">{row.phone}</td>
+                            <td className="px-4 py-2 whitespace-nowrap">{row.address.city}</td>
                             <td className="action-buttons">
                                 <button className="edit-button">
                                     Edit

@@ -17,6 +17,10 @@ const Header = () => {
           <Link to="/contact" className="text-gray-700 hover:text-blue-500">
             Contact
           </Link>
+
+          <Link to="/user/dashboard/my-advocates" className="text-gray-700 hover:text-blue-500">
+            My-Advocates
+          </Link>
  
           <Link to="/login" className="text-gray-700 hover:text-blue-500">
             Login
